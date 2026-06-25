@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>爱游戏体育 · 温暖伴你每一步运动时光</title>
+    <style>
+        /* reset & base */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            line-height: 1.7;
+            background: linear-gradient(145deg, #fde9e0 0%, #fce3d4 50%, #f7d6c2 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 2rem 1rem 4rem;
+        }
+        .page-wrapper {
+            max-width: 1120px;
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        /* 白色卡片与圆角氛围 */
+        .card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(4px);
+            border-radius: 48px 16px 48px 16px;
+            box-shadow: 0 12px 28px -8px rgba(170, 110, 80, 0.12), 0 4px 12px rgba(0, 0, 0, 0.02);
+            padding: 2.8rem 2.5rem;
+            margin-bottom: 2.4rem;
+            transition: transform 0.2s ease, box-shadow 0.3s;
+        }
+        .card:hover {
+            box-shadow: 0 20px 40px -12px rgba(160, 90, 60, 0.2);
+        }
+
+        h1, h2, h3 {
+            font-weight: 500;
+            letter-spacing: -0.01em;
+            color: #3e2b21;
+        }
+        h1 {
+            font-size: 2.8rem;
+            line-height: 1.2;
+            margin-bottom: 0.75rem;
+        }
+        h2 {
+            font-size: 2rem;
+            margin-bottom: 1.2rem;
+            border-left: 6px solid #dba78b;
+            padding-left: 1.2rem;
+        }
+        p {
+            color: #4e382b;
+            margin-bottom: 1.4rem;
+            font-size: 1.05rem;
+        }
+        .small-note {
+            color: #786052;
+            font-size: 0.95rem;
+        }
+
+        /* hero 区特别处理 */
+        .hero-card {
+            background: rgba(255, 248, 242, 0.75);
+            backdrop-filter: blur(2px);
+            border-radius: 60px 20px 60px 20px;
+            padding: 4rem 3rem 3.5rem;
+            margin-bottom: 2.8rem;
+            border: 1px solid rgba(235, 190, 170, 0.3);
+            box-shadow: 0 18px 36px -12px rgba(150, 100, 70, 0.15);
+            text-align: center;
+        }
+        .hero-card h1 {
+            font-size: 3.2rem;
+            font-weight: 480;
+            background: linear-gradient(135deg, #7a4d38, #b27a60);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 0.6rem;
+        }
+        .hero-card .sub {
+            font-size: 1.25rem;
+            color: #6e5443;
+            letter-spacing: 0.6px;
+            max-width: 680px;
+            margin: 0.2rem auto 1.8rem;
+        }
+        .hero-card .tagline {
+            display: inline-block;
+            background: rgba(215, 170, 150, 0.18);
+            padding: 0.4rem 1.8rem;
+            border-radius: 40px;
+            color: #6a4536;
+            font-size: 0.95rem;
+            border: 1px solid #e2c1ad;
+        }
+
+        /* 按钮感链接 */
+        .btn-link {
+            display: inline-block;
+            background: #e5c7b3;
+            color: #3f2a1f;
+            text-decoration: none;
+            padding: 0.5rem 1.8rem;
+            border-radius: 100px;
+            font-weight: 460;
+            font-size: 1rem;
+            border: 1px solid #dbc0ac;
+            box-shadow: 0 2px 6px rgba(150, 90, 60, 0.08);
+            transition: all 0.2s ease;
+            letter-spacing: 0.3px;
+        }
+        .btn-link:hover {
+            background: #dbb9a1;
+            border-color: #c9a488;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 14px rgba(150, 90, 60, 0.12);
+        }
+
+        /* 特点网格 */
+        .grid-2col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.8rem;
+            margin: 1.8rem 0 0.8rem;
+        }
+        .feature-item {
+            padding: 1.2rem 0.4rem 0.8rem 1.6rem;
+            border-left: 3px solid #eacebd;
+        }
+        .feature-item h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.4rem;
+            font-weight: 500;
+            color: #533c2f;
+        }
+        .feature-item p {
+            font-size: 0.98rem;
+            color: #5d4638;
+            margin-bottom: 0.2rem;
+        }
+
+        /* FAQ 摘要 */
+        .faq-mini {
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+            margin-top: 1.2rem;
+        }
+        .faq-q {
+            font-weight: 510;
+            color: #4b3428;
+            margin-bottom: 0.1rem;
+            font-size: 1.05rem;
+        }
+        .faq-a {
+            color: #5f493c;
+            padding-left: 0.4rem;
+            font-size: 0.98rem;
+        }
+        .faq-item {
+            border-bottom: 1px dashed #ddc7ba;
+            padding-bottom: 1rem;
+        }
+        .faq-item:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+        /* 底部链接 */
+        .footer-links {
+            margin-top: 2.2rem;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem 2.2rem;
+            font-size: 0.96rem;
+            color: #6a5547;
+        }
+        .footer-links a {
+            color: #623f2e;
+            text-decoration: none;
+            border-bottom: 1px dotted #c9af9c;
+            transition: border 0.2s;
+        }
+        .footer-links a:hover {
+            border-bottom: 1px solid #a07a63;
+        }
+
+        /* 响应式细节 */
+        @media (max-width: 720px) {
+            body { padding: 1.2rem 0.8rem 3rem; }
+            .card { padding: 2rem 1.5rem; }
+            .hero-card { padding: 3rem 1.8rem; }
+            h1 { font-size: 2.2rem; }
+            .hero-card h1 { font-size: 2.5rem; }
+            h2 { font-size: 1.6rem; }
+            .grid-2col { grid-template-columns: 1fr; gap: 0.6rem; }
+            .feature-item { padding-left: 0.8rem; }
+        }
+        @media (max-width: 480px) {
+            .hero-card .sub { font-size: 1rem; }
+            .btn-link { padding: 0.4rem 1.4rem; font-size: 0.9rem; }
+            .footer-links { flex-direction: column; align-items: center; gap: 0.7rem; }
+        }
+
+        /* 点缀 */
+        .muted-emoji {
+            opacity: 0.6;
+            margin-right: 6px;
+        }
+    </style>
+</head>
+<body>
+<div class="page-wrapper">
+
+    <!-- hero 区：温和开场，融入“爱游戏体育” -->
+    <div class="hero-card">
+        <h1>爱游戏体育 · 每一步都踏实</h1>
+        <div class="sub">运动不只是竞技，更是一段与自己对话的旅程。<br>我们希望在温和的陪伴中，找到属于你的节奏与力量。</div>
+        <div class="tagline">🏃 从日常散步到团队球场 · 轻松出发</div>
+    </div>
+
+    <!-- 优势区：价值观与体验，不浮夸 -->
+    <div class="card">
+        <h2>为什么越来越多的人选择这里</h2>
+        <div class="grid-2col">
+            <div class="feature-item">
+                <h3>🌱 真实运动场景</h3>
+                <p>无论是晨跑、骑行还是球类活动，平台围绕日常运动习惯搭建，不堆砌虚拟概念，只关心你每一次呼吸与汗水。</p>
+            </div>
+            <div class="feature-item">
+                <h3>🧭 低门槛参与</h3>
+                <p>没有复杂的规则，没有苛刻的门槛。你只需要迈出第一步，剩下的交给身体与时间的默契。</p>
+            </div>
+            <div class="feature-item">
+                <h3>🤝 温和社群氛围</h3>
+                <p>鼓励彼此，而非比较。我们更看重坚持与感受，你可以安静地记录进步，也可以与同好轻声交流。</p>
+            </div>
+            <div class="feature-item">
+                <h3>📊 简洁数据陪伴</h3>
+                <p>用最直观的方式了解自己的运动习惯，没有冗杂的图表，只有温暖的提醒和适度的激励。</p>
+            </div>
+        </div>
+        <p class="small-note" style="margin-top:1.6rem;">—— 这些思路背后，是<a href="https://main-aigamesport.com" style="color:#774d38; text-decoration:underline; text-decoration-style:dotted; text-underline-offset:3px;">爱游戏体育</a>一直尝试传递的：让运动回归生活，让陪伴自然而温暖。</p>
+    </div>
+
+    <!-- 说明区：从场景展开，自然讲述 -->
+    <div class="card">
+        <h2>一个下午，一次挥拍，一段慢跑</h2>
+        <p>我们常常把运动想得太遥远——似乎一定要去健身房、一定要有专业装备、一定要达到某种标准。但也许，运动最初的样子只是：今天比昨天多走了十分钟，周末约朋友打了一场不计分的球，或者只是在夕阳下伸了个懒腰。</p>
+        <p>在<a href="https://main-aigamesport.com" class="btn-link" style="text-decoration:none;">爱游戏体育</a>，我们把这些细小的瞬间收集起来，不夸大，不打扰。你可以把它当作一个安静的记录者，也可以当成一个陪你探索不同运动方式的伙伴。这里有基础的运动建议、适合不同体力的活动灵感，也有来自普通人的真实故事。</p>
+        <p>我们相信，当运动不再被“坚持”二字所累，它就会像喝水、散步一样，成为生活的底色。你不需要成为运动员，只需要成为那个愿意尝试的自己。</p>
+        <div style="background: #f3e3d9; border-radius: 100px; padding: 0.8rem 1.8rem; display: inline-block; margin-top: 0.6rem;">
+            <span style="color:#5b3f31;">☕ 慢慢来，比较快</span>
+        </div>
+    </div>
+
+    <!-- FAQ 摘要：轻量问答，体现真实关心 -->
+    <div class="card">
+        <h2>一些你可能想了解的</h2>
+        <div class="faq-mini">
+            <div class="faq-item">
+                <div class="faq-q">✦ 我平时几乎不运动，适合吗？</div>
+                <div class="faq-a">当然。很多内容就是从零开始的，比如五分钟拉伸、居家小活动。关键是找到让你舒服的节奏。</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-q">✦ 需要下载额外的设备或应用吗？</div>
+                <div class="faq-a">完全不用。所有内容都可以直接通过浏览器访问。你只需要一个愿意尝试的心情。</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-q">✦ 这里的运动建议专业吗？</div>
+                <div class="faq-a">我们提供的是基于常识和普遍运动科学的一般建议，适合大众日常参与。如果有特殊健康状况，建议先咨询专业人士。</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-q">✦ 怎样获得更多信息或一起交流？</div>
+                <div class="faq-a">你可以直接浏览 <a href="https://main-aigamesport.com" style="color:#774d38; text-decoration:underline; text-underline-offset:2px;">爱游戏体育</a> 上的内容，那里有更完整的介绍和社区动态。</div>
+            </div>
+        </div>
+        <p style="margin-top:1.8rem; font-size:0.95rem; color:#6a5547;">如果还有别的疑问，欢迎随时在网站内找到反馈入口，我们很乐意倾听。</p>
+    </div>
+
+    <!-- 底部链接：温和收尾 -->
+    <div class="footer-links">
+        <a href="https://main-aigamesport.com">爱游戏体育</a>
+        <span style="color:#bc9e8c;">·</span>
+        <a href="#">关于理念</a>
+        <a href="#">运动手记</a>
+        <a href="#">常见问题</a>
+        <span style="color:#bc9e8c;">·</span>
+        <span style="color:#6a5547;">用温和的方式，和运动做朋友</span>
+    </div>
+
+    <!-- 极简脚注（仅装饰） -->
+    <div style="margin-top: 2.2rem; text-align: center; font-size: 0.8rem; color: #b29481; border-top: 1px solid #e7d4c7; padding-top: 1.8rem;">
+        <span>慢慢来，每一步都算数</span>
+    </div>
+
+</div>
+</body>
+</html>
